@@ -124,14 +124,14 @@ def js():
     local('browserify temp.js -s mdc > dist/markdown-core.js')
     local('rm temp.js')
     local('echo "\n" >> dist/markdown-core.js')
-    local('curl https://cdn.jsdelivr.net/jquery/2.2.4/jquery.min.js >> dist/markdown-core.js')
-    local('echo "\n" >> dist/markdown-core.js')
+    # local('curl https://cdn.jsdelivr.net/jquery/2.2.4/jquery.min.js >> dist/markdown-core.js')
+    # local('echo "\n" >> dist/markdown-core.js')
     local('curl https://cdn.jsdelivr.net/js-cookie/2.2.0/js.cookie.js >> dist/markdown-core.js')
     local('echo "\n" >> dist/markdown-core.js')
     local('curl https://cdn.jsdelivr.net/mermaid/6.0.0/mermaid.min.js >> dist/markdown-core.js')
     local('echo "\n" >> dist/markdown-core.js')
     local('./node_modules/babel-cli/bin/babel.js markdown-core-browser.js >> dist/markdown-core.js')
-    local('uglifyjs dist/markdown-core.js -cmo dist/markdown-core.min.js')
+    local('uglifyjs -c -o dist/markdown-core.min.js dist/markdown-core.js')
     local('rm dist/markdown-core.js')
 
 
